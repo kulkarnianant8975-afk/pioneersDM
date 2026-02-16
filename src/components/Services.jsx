@@ -106,18 +106,12 @@ const Services = () => {
   return (
     <section id="services" className="services section">
       <div className="container">
-        <motion.div
-          className="section-title"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-title">
           <h2>Our Services</h2>
           <p>
             Comprehensive digital marketing solutions tailored to your business goals
           </p>
-        </motion.div>
+        </div>
 
         <motion.div
           className="services-grid"

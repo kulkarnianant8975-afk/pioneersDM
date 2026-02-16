@@ -55,18 +55,12 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="testimonials section">
       <div className="container">
-        <motion.div
-          className="section-title"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-title">
           <h2>Client Success Stories</h2>
           <p>
             See what our clients say about their experience working with us
           </p>
-        </motion.div>
+        </div>
 
         <motion.div
           className="testimonials-grid"

@@ -139,6 +139,8 @@ a {
 .section-title {
   text-align: center;
   margin-bottom: var(--spacing-lg);
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 1;
 }
 
 .section-title h2 {

@@ -6,6 +6,8 @@ import Services from './components/Services';
 import Process from './components/Process';
 import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
+import JobOpenings from './components/JobOpenings';
+import Hiring from './components/Hiring';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './index.css';
@@ -44,6 +46,8 @@ function App() {
         <Process />
         <Testimonials />
         <CTA />
+        <JobOpenings />  {/* Job openings banner with graphics */}
+        <Hiring />       {/* Full application form */}
         <Contact />
       </main>
       <Footer />

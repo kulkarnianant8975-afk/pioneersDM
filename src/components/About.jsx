@@ -51,18 +51,12 @@ const About = () => {
   return (
     <section id="about" className="about section">
       <div className="container">
-        <motion.div
-          className="section-title"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-title">
           <h2>About Pioneers Digital Marketing</h2>
           <p>
             Your trusted partner in digital transformation and business growth
           </p>
-        </motion.div>
+        </div>
 
         <div className="about-content">
           <motion.div
