@@ -95,7 +95,7 @@ const Testimonials = () => {
                 <div className="author-info">
                   <div className="author-name">{testimonial.name}</div>
                   <div className="author-role">{testimonial.role}</div>
-                  <div className="author-company">{testimonial.company}</div>
+                  {/* <div className="author-company">{testimonial.company}</div> */}
                 </div>
               </div>
             </motion.div>

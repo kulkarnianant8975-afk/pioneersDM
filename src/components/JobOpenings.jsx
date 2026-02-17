@@ -1,85 +1,43 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Clock, DollarSign, ArrowRight, TrendingUp, Mail, Bell } from 'lucide-react';
+import { 
+  Briefcase, ArrowRight, TrendingUp, 
+  Mail, Phone, MapPin, CheckSquare, Bell
+} from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import './JobOpenings.css';
 
 const JobOpenings = () => {
-  // ========================================
-  // CONFIGURATION: Set this to control visibility
-  // ========================================
-  const HIRING_ACTIVE = false;  // Set to false when no openings
-  
+
+  // =============================================
+  // TOGGLE: true = show jobs | false = no openings
+  // =============================================
+  const HIRING_ACTIVE = true;
+
   const jobs = [
-    {
-      title: 'Digital Marketing Executive',
-      department: 'Marketing',
-      location: 'Mumbai, India',
-      type: 'Full-Time',
-      salary: '₹3-5 LPA',
-      experience: '1-3 years',
-      description: 'Looking for creative minds to lead our digital marketing campaigns and drive growth.',
-      color: '#0066FF'
-    },
-    {
-      title: 'Social Media Manager',
-      department: 'Content',
-      location: 'Remote',
-      type: 'Full-Time',
-      salary: '₹4-6 LPA',
-      experience: '2-4 years',
-      description: 'Manage our social media presence and create engaging content that converts.',
-      color: '#EC4899'
-    },
-    {
-      title: 'Web Developer',
-      department: 'Technology',
-      location: 'Mumbai, India',
-      type: 'Full-Time',
-      salary: '₹5-8 LPA',
-      experience: '2-5 years',
-      description: 'Build stunning websites and web applications using modern technologies.',
-      color: '#00D4AA'
-    },
-    {
-      title: 'Graphic Designer',
-      department: 'Design',
-      location: 'Hybrid',
-      type: 'Full-Time',
-      salary: '₹3-5 LPA',
-      experience: '1-3 years',
-      description: 'Create eye-catching designs for brands and marketing campaigns.',
-      color: '#F59E0B'
-    }
+    { title: 'Sales Executive',    icon: '💼', color: '#F59E0B' },
+    { title: 'Video Editor',       icon: '🎬', color: '#0066FF' },
+    { title: 'Marketing Staff',    icon: '📢', color: '#00D4AA' },
+    { title: 'Product Consultant', icon: '🧠', color: '#EC4899' }
   ];
 
   const scrollToHiring = () => {
     const element = document.getElementById('hiring');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToContact = () => {
     const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleNotifyMe = () => {
-    scrollToContact();
-    toast.success('Fill the contact form to get notified about future openings! 📧');
-  };
-
-  // ========================================
+  // =============================================
   // NO OPENINGS VIEW
-  // ========================================
-  if (!HIRING_ACTIVE || jobs.length === 0) {
+  // =============================================
+  if (!HIRING_ACTIVE) {
     return (
       <section id="job-openings" className="job-openings section no-openings-section">
         <Toaster position="top-right" />
-        
         <div className="container">
           <motion.div
             className="no-openings-container"
@@ -91,15 +49,20 @@ const JobOpenings = () => {
             <div className="no-openings-icon">
               <Briefcase size={64} />
             </div>
-
             <h2>No Current Openings</h2>
             <p className="no-openings-text">
-              We're not actively hiring at the moment, but we're always looking for talented individuals! 
-              Drop us your resume and we'll reach out when opportunities arise.
+              We're not actively hiring at the moment, but we're always looking 
+              for talented individuals! Drop us your resume and we'll reach out 
+              when opportunities arise.
             </p>
-
             <div className="no-openings-actions">
-              <button onClick={handleNotifyMe} className="btn btn-primary btn-large">
+              <button
+                onClick={() => {
+                  scrollToContact();
+                  toast.success("Fill the contact form — we'll notify you! 📧");
+                }}
+                className="btn btn-primary btn-large"
+              >
                 <Bell size={20} />
                 Notify Me About Openings
               </button>
@@ -108,26 +71,20 @@ const JobOpenings = () => {
                 Send Your Resume
               </button>
             </div>
-
             <div className="why-join-future">
               <h3>Why Join Pioneers Digital Marketing?</h3>
               <div className="future-benefits">
-                <div className="future-benefit">
-                  <div className="future-icon">✓</div>
-                  <span>Competitive Salary & Benefits</span>
-                </div>
-                <div className="future-benefit">
-                  <div className="future-icon">✓</div>
-                  <span>Career Growth Opportunities</span>
-                </div>
-                <div className="future-benefit">
-                  <div className="future-icon">✓</div>
-                  <span>Flexible Work Environment</span>
-                </div>
-                <div className="future-benefit">
-                  <div className="future-icon">✓</div>
-                  <span>Learning & Development Programs</span>
-                </div>
+                {[
+                  'Competitive Salary & Benefits',
+                  'Career Growth Opportunities',
+                  'Flexible Work Environment',
+                  'Learning & Development Programs'
+                ].map((b, i) => (
+                  <div className="future-benefit" key={i}>
+                    <div className="future-icon">✓</div>
+                    <span>{b}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -136,33 +93,13 @@ const JobOpenings = () => {
     );
   }
 
-  // ========================================
-  // ACTIVE HIRING VIEW (With Job Cards)
-  // ========================================
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  };
-
+  // =============================================
+  // ACTIVE HIRING VIEW
+  // =============================================
   return (
     <section id="job-openings" className="job-openings section">
-      {/* Animated Background */}
+      <Toaster position="top-right" />
+
       <div className="job-openings-bg">
         <div className="floating-shape shape-1"></div>
         <div className="floating-shape shape-2"></div>
@@ -170,102 +107,142 @@ const JobOpenings = () => {
       </div>
 
       <div className="container">
-        {/* Banner Header */}
-        <motion.div
-          className="job-openings-header"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="header-badge">
-            <TrendingUp size={20} />
-            <span>We're Growing!</span>
-          </div>
-          <h2>Join Our Amazing Team</h2>
-          <p>
-            We're looking for talented individuals to help us revolutionize digital marketing. 
-            Explore opportunities and grow your career with us!
-          </p>
-        </motion.div>
+        <div className="hiring-layout">
 
-        {/* Job Cards Grid */}
-        <motion.div
-          className="jobs-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {jobs.map((job, index) => (
-            <motion.div
-              key={index}
-              className="job-card"
-              variants={cardVariants}
-              whileHover={{ y: -12, scale: 1.02 }}
-              onClick={scrollToHiring}
-            >
-              <div className="job-card-header" style={{ background: `${job.color}15` }}>
-                <div className="job-icon" style={{ background: job.color }}>
-                  <Briefcase size={24} />
-                </div>
-                <div className="job-badge" style={{ background: `${job.color}25`, color: job.color }}>
-                  {job.department}
-                </div>
+          {/* ── LEFT: Dark Poster Card ── */}
+          <motion.div
+            className="hiring-poster-card"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Header */}
+            <div className="poster-header">
+              <p className="poster-pre">WE ARE</p>
+              <h2 className="poster-title">HIRING</h2>
+              <p className="poster-sub">JOIN OUR TEAM</p>
+            </div>
+
+            {/* Open Positions */}
+            <div className="poster-section">
+              <div className="poster-badge">
+                <CheckSquare size={18} />
+                <span>Open Positions :</span>
               </div>
+              <ul className="positions-list">
+                {jobs.map((job, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                  >
+                    <CheckSquare size={20} fill={job.color} color={job.color} />
+                    <span>{job.title}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
 
-              <div className="job-card-body">
-                <h3>{job.title}</h3>
-                <p className="job-description">{job.description}</p>
-
-                <div className="job-details">
-                  <div className="detail-item">
+            {/* Send CV To */}
+            <div className="poster-section">
+              <div className="poster-badge">
+                <Mail size={18} />
+                <span>Send Your CV To :</span>
+              </div>
+              <div className="contact-details">
+                <a href="mailto:pdmasolutions@gmail.com" className="contact-detail-item">
+                  <div className="contact-detail-icon" style={{ background: '#F59E0B' }}>
+                    <Mail size={16} />
+                  </div>
+                  <span>pdmasolutions@gmail.com</span>
+                </a>
+                <a href="tel:+918975165813" className="contact-detail-item">
+                  <div className="contact-detail-icon" style={{ background: '#0066FF' }}>
+                    <Phone size={16} />
+                  </div>
+                  <span>+91 8975165813</span>
+                </a>
+                <div className="contact-detail-item">
+                  <div className="contact-detail-icon" style={{ background: '#00D4AA' }}>
                     <MapPin size={16} />
-                    <span>{job.location}</span>
                   </div>
-                  <div className="detail-item">
-                    <Clock size={16} />
-                    <span>{job.type}</span>
-                  </div>
-                  <div className="detail-item">
-                    <DollarSign size={16} />
-                    <span>{job.salary}</span>
-                  </div>
-                </div>
-
-                <div className="job-experience">
-                  <strong>Experience:</strong> {job.experience}
+                  <span>Basmat Road, Parbhani</span>
                 </div>
               </div>
+            </div>
 
-              <div className="job-card-footer">
-                <button className="apply-btn" style={{ background: job.color }}>
-                  Apply Now
-                  <ArrowRight size={18} />
-                </button>
+            {/* Footer */}
+            <div className="poster-footer">
+              <span>Full Time &nbsp;|&nbsp; Work From Office</span>
+            </div>
+          </motion.div>
+
+          {/* ── RIGHT: Job Cards + CTA ── */}
+          <motion.div
+            className="hiring-right"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="hiring-right-header">
+              <div className="header-badge-pill">
+                <TrendingUp size={16} />
+                <span>We're Growing Fast!</span>
               </div>
+              <h2>Shape Your Career With Us</h2>
+              <p>
+                Join the Pioneers Digital Marketing team and be part of something extraordinary.
+                We're looking for passionate, driven individuals who want to make an impact 
+                in the digital world.
+              </p>
+            </div>
 
-              <div className="job-card-glow" style={{ background: `${job.color}20` }}></div>
-            </motion.div>
-          ))}
-        </motion.div>
+            {/* Job Mini Cards */}
+            <div className="job-mini-cards">
+              {jobs.map((job, index) => (
+                <motion.div
+                  key={index}
+                  className="job-mini-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ x: 8 }}
+                  onClick={scrollToHiring}
+                >
+                  <div
+                    className="mini-card-icon"
+                    style={{ background: `${job.color}20`, color: job.color }}
+                  >
+                    <span className="mini-icon-emoji">{job.icon}</span>
+                  </div>
+                  <div className="mini-card-content">
+                    <h4>{job.title}</h4>
+                    <p>Full Time &nbsp;•&nbsp; Work From Office &nbsp;•&nbsp; Parbhani</p>
+                  </div>
+                  <div className="mini-card-arrow" style={{ color: job.color }}>
+                    <ArrowRight size={20} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-        {/* View All Button */}
-        <motion.div
-          className="view-all-container"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <button onClick={scrollToHiring} className="btn btn-primary btn-large">
-            View All Openings & Apply
-            <ArrowRight size={20} />
-          </button>
-          <p className="openings-count">
-            🎯 <strong>{jobs.length}+ positions</strong> available across departments
-          </p>
-        </motion.div>
+            {/* Apply Now Button */}
+            <motion.button
+              className="apply-now-btn"
+              onClick={scrollToHiring}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              APPLY NOW
+              <ArrowRight size={22} />
+            </motion.button>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -7,8 +7,10 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding-top: 80px;
+  padding-bottom: 6rem;
+  z-index: 1;
 }
 
 .hero-bg {
