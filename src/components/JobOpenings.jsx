@@ -1,4 +1,240 @@
-import React from 'react';
+// import React, { useState } from "react";
+// import "./JobOpenings.css";
+
+// const JobOpenings = () => {
+//   const [selectedJob, setSelectedJob] = useState(null);
+
+//   // 🔥 Scroll to Hiring Section
+//   const scrollToHiring = () => {
+//     const hiringSection = document.getElementById("hiring");
+//     if (hiringSection) {
+//       hiringSection.scrollIntoView({ behavior: "smooth" });
+//     }
+//     setSelectedJob(null); // Close modal after click
+//   };
+
+//   const jobs = [
+//     {
+//       title: "Sales Executive (Hybrid – Inbound + Field Sales)",
+//       location: "Parbhani (Work from Office + Field)",
+//       type: "Full-Time",
+//       description: `
+// About the Role
+// We are looking for a result-driven Sales Executive who can handle both inbound leads and field sales. Your job is to convert inquiries into clients and build strong relationships with local businesses.
+
+// Key Responsibilities
+// Handle inbound leads from Meta Ads, WhatsApp & website
+// Call and qualify potential clients
+// Schedule meetings and close deals
+// Visit businesses for field sales and presentations
+// Understand client needs and recommend suitable marketing services
+// Maintain daily follow-ups in CRM
+// Achieve monthly revenue targets
+// Build long-term client relationships
+
+// Requirements
+// Strong communication & negotiation skills
+// Confidence in meeting business owners
+// Basic understanding of digital marketing (preferred)
+// Ability to work with targets
+// Two-wheeler preferred for field visits
+
+// What We Offer
+// Fixed salary + performance-based incentives
+// Real sales exposure in digital marketing industry
+// Fast growth opportunity
+// Training & support
+// `
+//     },
+//     {
+//       title: "Marketing Executive (Field Marketing)",
+//       location: "Parbhani",
+//       type: "Full-Time (Field Based)",
+//       description: `
+// About the Role
+// We are hiring a proactive Marketing Executive responsible for generating leads and building brand visibility in the local market.
+
+// Key Responsibilities
+// Visit local businesses and generate leads
+// Explain our services (Meta Ads, WhatsApp Marketing, Automation, Content Creation, etc.)
+// Distribute brochures and collect contact details
+// Build partnerships with local brands
+// Coordinate with sales team for closures
+// Conduct small business awareness visits
+// Submit daily field reports
+
+// Requirements
+// Strong communication skills
+// Confident personality
+// Self-motivated & energetic
+// Ability to approach business owners
+// Two-wheeler preferred
+
+// What We Offer
+// Fixed salary + incentives
+// Direct market exposure
+// Skill development in real-world marketing
+// Career growth in digital marketing industry
+// `
+//     },
+//     {
+//       title: "Video Editor (Full-Time – Work From Office)",
+//       location: "Parbhani",
+//       type: "Full-Time",
+//       description: `
+// About the Role
+// We are looking for a creative Video Editor who can create engaging content for social media, ads, and client projects.
+
+// Key Responsibilities
+// Edit reels, ads, promotional videos
+// Add captions, transitions, sound effects
+// Work closely with marketing & content team
+// Deliver high-quality edits within deadlines
+// Understand trends and create attention-grabbing videos
+// Manage video files and content library
+
+// Requirements
+// Proficiency in Premiere Pro / CapCut / After Effects
+// Strong sense of storytelling & pacing
+// Basic knowledge of social media trends
+// Creativity and attention to detail
+// Ability to handle multiple projects
+
+// What We Offer
+// Stable full-time role
+// Opportunity to work on multiple brands
+// Creative freedom
+// Skill growth in performance marketing content
+// `
+//     },
+//     {
+//       title: "Product Consultant (Client Requirement Specialist)",
+//       location: "Parbhani (Work from Office)",
+//       type: "Full-Time",
+//       description: `
+// About the Role
+// We are looking for a Product Consultant who can understand business problems and suggest the right digital marketing solutions.
+
+// This is not pure sales — this role requires understanding customer requirements and explaining how our services can help grow their business.
+
+// Key Responsibilities
+// Meet clients and understand their business goals
+// Identify problems in their marketing
+// Suggest suitable services (Meta Ads, Automation, Content, etc.)
+// Explain ROI and long-term benefits
+// Prepare customized service recommendations
+// Support sales team in closing deals
+// Build long-term trust with clients
+
+// Requirements
+// Strong analytical and communication skills
+// Ability to understand business models
+// Basic understanding of digital marketing services
+// Presentation skills
+// Professional attitude
+
+// What We Offer
+// Growth into Business Consultant role
+// Exposure to multiple industries
+// Competitive salary
+// Learning environment
+// `
+//     }
+//   ];
+
+//   return (
+//     <section className="job-openings">
+//       <div className="container">
+//         <div className="hiring-layout">
+
+//           {/* LEFT SIDE (UNCHANGED) */}
+//           <div className="hiring-poster-card">
+//             <div className="poster-header">
+//               <p className="poster-pre">WE ARE</p>
+//               <h1 className="poster-title">HIRING</h1>
+//               <p className="poster-sub">JOIN OUR TEAM</p>
+//             </div>
+
+//             <div className="poster-section">
+//               <div className="poster-badge">Open Positions</div>
+//               <ul className="positions-list">
+//                 {jobs.map((job, index) => (
+//                   <li key={index}>{job.title}</li>
+//                 ))}
+//               </ul>
+//             </div>
+//           </div>
+
+//           {/* RIGHT SIDE */}
+//           <div className="hiring-right">
+//             <div className="hiring-right-header">
+//               <h2>Current Openings</h2>
+//               <p>Click on any position to view full job details.</p>
+//             </div>
+
+//             <div className="job-mini-cards">
+//               {jobs.map((job, index) => (
+//                 <div
+//                   key={index}
+//                   className="job-mini-card"
+//                   onClick={() => setSelectedJob(job)}
+//                 >
+//                   <div className="mini-card-content">
+//                     <h4>{job.title}</h4>
+//                     <p>{job.location}</p>
+//                   </div>
+//                 </div>
+                
+//               ))}
+//             </div>
+
+//             {/* MAIN APPLY BUTTON */}
+//             <button className="apply-now-btn" onClick={scrollToHiring}>
+//               Apply Now
+//             </button>
+//           </div>
+
+//         </div>
+//       </div>
+
+//       {/* VIEW JD MODAL */}
+//       {selectedJob && (
+//         <div
+//           className="job-modal-overlay"
+//           onClick={() => setSelectedJob(null)}
+//         >
+//           <div
+//             className="job-modal"
+//             onClick={(e) => e.stopPropagation()}
+//           >
+//             <button
+//               className="job-modal-close"
+//               onClick={() => setSelectedJob(null)}
+//             >
+//               ×
+//             </button>
+
+//             <h2>{selectedJob.title}</h2>
+//             <p><strong>Location:</strong> {selectedJob.location}</p>
+//             <p><strong>Job Type:</strong> {selectedJob.type}</p>
+
+//             <div className="job-description-text">
+//               {selectedJob.description}
+//             </div>
+
+//             {/* FIXED APPLY BUTTON */}
+//             <button className="apply-now-btn" onClick={scrollToHiring}>
+//               Apply Now
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </section>
+//   );
+// };
+
+// export default JobOpenings;
+
 import { motion } from 'framer-motion';
 import { 
   Briefcase, ArrowRight, TrendingUp, 
@@ -6,13 +242,144 @@ import {
 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import './JobOpenings.css';
+import { useState } from 'react';
 
 const JobOpenings = () => {
 
+const [selectedJob, setSelectedJob] = useState(null);
   // =============================================
   // TOGGLE: true = show jobs | false = no openings
   // =============================================
   const HIRING_ACTIVE = true;
+
+  const jobDetails = [
+    {
+      title: "Sales Executive (Hybrid – Inbound + Field Sales)",
+      location: "Parbhani (Work from Office + Field)",
+      type: "Full-Time",
+      description: `
+About the Role
+We are looking for a result-driven Sales Executive who can handle both inbound leads and field sales. Your job is to convert inquiries into clients and build strong relationships with local businesses.
+
+Key Responsibilities
+Handle inbound leads from Meta Ads, WhatsApp & website
+Call and qualify potential clients
+Schedule meetings and close deals
+Visit businesses for field sales and presentations
+Understand client needs and recommend suitable marketing services
+Maintain daily follow-ups in CRM
+Achieve monthly revenue targets
+Build long-term client relationships
+
+Requirements
+Strong communication & negotiation skills
+Confidence in meeting business owners
+Basic understanding of digital marketing (preferred)
+Ability to work with targets
+Two-wheeler preferred for field visits
+
+What We Offer
+Fixed salary + performance-based incentives
+Real sales exposure in digital marketing industry
+Fast growth opportunity
+Training & support
+`
+    },
+    {
+      title: "Marketing Executive (Field Marketing)",
+      location: "Parbhani",
+      type: "Full-Time (Field Based)",
+      description: `
+About the Role
+We are hiring a proactive Marketing Executive responsible for generating leads and building brand visibility in the local market.
+
+Key Responsibilities
+Visit local businesses and generate leads
+Explain our services (Meta Ads, WhatsApp Marketing, Automation, Content Creation, etc.)
+Distribute brochures and collect contact details
+Build partnerships with local brands
+Coordinate with sales team for closures
+Conduct small business awareness visits
+Submit daily field reports
+
+Requirements
+Strong communication skills
+Confident personality
+Self-motivated & energetic
+Ability to approach business owners
+Two-wheeler preferred
+
+What We Offer
+Fixed salary + incentives
+Direct market exposure
+Skill development in real-world marketing
+Career growth in digital marketing industry
+`
+    },
+    {
+      title: "Video Editor (Full-Time – Work From Office)",
+      location: "Parbhani",
+      type: "Full-Time",
+      description: `
+About the Role
+We are looking for a creative Video Editor who can create engaging content for social media, ads, and client projects.
+
+Key Responsibilities
+Edit reels, ads, promotional videos
+Add captions, transitions, sound effects
+Work closely with marketing & content team
+Deliver high-quality edits within deadlines
+Understand trends and create attention-grabbing videos
+Manage video files and content library
+
+Requirements
+Proficiency in Premiere Pro / CapCut / After Effects
+Strong sense of storytelling & pacing
+Basic knowledge of social media trends
+Creativity and attention to detail
+Ability to handle multiple projects
+
+What We Offer
+Stable full-time role
+Opportunity to work on multiple brands
+Creative freedom
+Skill growth in performance marketing content
+`
+    },
+    {
+      title: "Product Consultant (Client Requirement Specialist)",
+      location: "Parbhani (Work from Office)",
+      type: "Full-Time",
+      description: `
+About the Role
+We are looking for a Product Consultant who can understand business problems and suggest the right digital marketing solutions.
+
+This is not pure sales — this role requires understanding customer requirements and explaining how our services can help grow their business.
+
+Key Responsibilities
+Meet clients and understand their business goals
+Identify problems in their marketing
+Suggest suitable services (Meta Ads, Automation, Content, etc.)
+Explain ROI and long-term benefits
+Prepare customized service recommendations
+Support sales team in closing deals
+Build long-term trust with clients
+
+Requirements
+Strong analytical and communication skills
+Ability to understand business models
+Basic understanding of digital marketing services
+Presentation skills
+Professional attitude
+
+What We Offer
+Growth into Business Consultant role
+Exposure to multiple industries
+Competitive salary
+Learning environment
+`
+    }
+  ];
 
   const jobs = [
     { title: 'Sales Executive',    icon: '💼', color: '#F59E0B' },
@@ -212,7 +579,8 @@ const JobOpenings = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   whileHover={{ x: 8 }}
-                  onClick={scrollToHiring}
+                  onClick={() => {const fullJob=jobDetails.find(j=>j.id==job.id);
+                  setSelectedJob(fullJob);}}
                 >
                   <div
                     className="mini-card-icon"
@@ -231,8 +599,40 @@ const JobOpenings = () => {
               ))}
             </div>
 
-            {/* Apply Now Button */}
-            <motion.button
+
+                {selectedJob && (
+        <div
+          className="job-modal-overlay"
+          onClick={() => setSelectedJob(null)}
+        >
+          <div
+            className="job-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="job-modal-close"
+              onClick={() => setSelectedJob(null)}
+            >
+              ×
+            </button>
+
+            <h2>{selectedJob.title}</h2>
+            <p><strong>Location:</strong> {selectedJob.location}</p>
+            <p><strong>Job Type:</strong> {selectedJob.type}</p>
+
+            <div className="job-description-text">
+              {selectedJob.description}
+            </div>
+
+            {/* FIXED APPLY BUTTON */}
+            <button className="apply-now-btn" onClick={() =>{setSelectedJob(null);scrollToHiring()}} >
+              Apply Now
+            </button>
+          </div>
+        </div>
+      )}
+//             {/* Apply Now Button */}
+           <motion.button
               className="apply-now-btn"
               onClick={scrollToHiring}
               whileHover={{ scale: 1.03 }}

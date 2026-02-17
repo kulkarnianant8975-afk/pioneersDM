@@ -16,13 +16,30 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // ✅ PROFESSIONAL SCROLL FUNCTION (Dynamic Header Height)
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
+  const element = document.getElementById(sectionId);
+
+  if (!element) return;
+
+  // First close mobile menu
+  setIsMobileMenuOpen(false);
+
+  // Small delay to allow menu animation to finish
+  setTimeout(() => {
+    const header = document.querySelector('.header');
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition =
+      elementPosition + window.pageYOffset - headerHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+  }, 300); // match your motion duration
+};
 
   const navItems = [
     { name: 'Home', id: 'hero' },
@@ -30,12 +47,12 @@ const Header = () => {
     { name: 'Services', id: 'services' },
     { name: 'Process', id: 'process' },
     { name: 'Testimonials', id: 'testimonials' },
-     { name: 'Careers', id: 'hiring' },
-    { name: 'Contact', id: 'contact' }
+    { name: 'Careers', id: 'hiring' },
+    { name: 'Contact', id: 'contact' },
   ];
 
   return (
-    <motion.header 
+    <motion.header
       className={`header ${isScrolled ? 'scrolled' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -43,11 +60,13 @@ const Header = () => {
     >
       <div className="container">
         <div className="header-content">
+
           {/* Logo */}
-          <motion.div 
+          <motion.div
             className="logo"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => scrollToSection('hero')}
           >
             <div className="logo-icon">P</div>
             <div className="logo-text">
@@ -80,9 +99,6 @@ const Header = () => {
             className="header-cta btn btn-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
           >
             <Phone size={18} />
             <span className="header-cta-text">Call Now</span>
@@ -111,22 +127,23 @@ const Header = () => {
               onClick={() => scrollToSection(item.id)}
               className="nav-link-mobile"
               initial={{ opacity: 0, x: -20 }}
-              animate={{ 
+              animate={{
                 opacity: isMobileMenuOpen ? 1 : 0,
-                x: isMobileMenuOpen ? 0 : -20
+                x: isMobileMenuOpen ? 0 : -20,
               }}
               transition={{ delay: index * 0.05 }}
             >
               {item.name}
             </motion.button>
           ))}
+
           <motion.a
             href="tel:8669880738"
             className="nav-link-mobile cta-mobile"
             initial={{ opacity: 0, x: -20 }}
-            animate={{ 
+            animate={{
               opacity: isMobileMenuOpen ? 1 : 0,
-              x: isMobileMenuOpen ? 0 : -20
+              x: isMobileMenuOpen ? 0 : -20,
             }}
             transition={{ delay: navItems.length * 0.05 }}
           >

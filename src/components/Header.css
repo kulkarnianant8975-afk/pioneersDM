@@ -1,6 +1,17 @@
 /* ====================================
    HEADER STYLES
    ==================================== */
+ /* ====================================
+   FIXED HEADER BODY OFFSET
+   ==================================== */
+
+body {
+  padding-top: 90px;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
 
 .header {
   position: fixed;
