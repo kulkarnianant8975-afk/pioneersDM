@@ -19,14 +19,16 @@ const Hiring = () => {
   const formRef = useRef(null);
 
   const positions = [
-    'Digital Marketing Executive',
+    'Product Consultant',
     'Social Media Manager',
     'Content Writer',
     'Graphic Designer',
     'Web Developer',
     'SEO Specialist',
     'Video Editor',
-    'Business Development Manager'
+    'Business Development Manager',
+    'Marketing Staff',
+    'Sales Executive'
   ];
 
   const experienceLevels = [
